@@ -19,21 +19,23 @@ namespace HRProgramWPF.ViewModels
             AddEmpolyeeCommand = new RelayCommand(AddEmpolyee);
             EditEmpolyeeCommand = new RelayCommand(EditEmpolyee);
             FireEmpolyeeCommand = new RelayCommand(FireEmpolyee);
-            RefreshDataCommand = new RelayCommand(RefreshData);
+            FiltrDataCommand = new RelayCommand(FiltrData);
             ShowSettingsCommand = new RelayCommand(ShowSettings);
-
-            GetData();
+            GetAllEmpolyes();
+            SetFiltr();
         }
 
         public ICommand AddEmpolyeeCommand { get; set; }
         public ICommand EditEmpolyeeCommand { get; set; }
         public ICommand FireEmpolyeeCommand { get; set; }
-        public ICommand RefreshDataCommand { get; set; }
+        public ICommand FiltrDataCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
 
-        private Employees _selectedEmployee;
+      
+        
+        private Employee _selectedEmployee;
 
-        public Employees SelectedEmployee
+        public Employee SelectedEmployee
         {
             get { return _selectedEmployee; }
             set { _selectedEmployee = value;
@@ -41,11 +43,9 @@ namespace HRProgramWPF.ViewModels
             }
         }
 
+        private ObservableCollection<Employee> _employees;
 
-
-        private ObservableCollection<Employees> _employees;
-
-        public ObservableCollection<Employees> Employees
+        public ObservableCollection<Employee> Employees
         {
             get { return _employees; }
             set { 
@@ -55,13 +55,44 @@ namespace HRProgramWPF.ViewModels
             }
         }
 
-        public List<string> DataFiltr = new List<string> { "Wszyscy", "zatrudnieni", "zwolnieni" };
+
+        private int _selectedFiltrId;
+
+        public int SelectedFiltrId
+        {
+            get { return _selectedFiltrId; }
+            set
+            {
+                _selectedFiltrId = value;
+                OnPropertyChanged();
+            }
+        }
 
 
-        private void GetData()
+
+
+        private ObservableCollection<string> _dataFiltr;
+
+        public ObservableCollection<string> DataFiltr
+        {
+            get { return _dataFiltr; }
+            set { _dataFiltr = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private void SetFiltr ()
+        {
+            DataFiltr = new ObservableCollection<string> { "Wszyscy", "Zatrudnieni", "Zwolnieni" };
+            _selectedFiltrId = 0;
+        }
+
+
+        private void GetAllEmpolyes()
         {
 
-            Employees = new ObservableCollection<Employees>(_repository.GetEmployees());
+            Employees = new ObservableCollection<Employee>(_repository.GetEmployees());
         }
 
         private void ShowSettings(object obj)
@@ -70,9 +101,12 @@ namespace HRProgramWPF.ViewModels
             dbWindow.ShowDialog();
         }
 
-        private void RefreshData(object obj)
+        private void FiltrData(object _selectedFiltrId)
         {
-            GetData();
+            if ((int)_selectedFiltrId == 0) GetAllEmpolyes();
+            else if ((int)_selectedFiltrId == 1)
+                Employees= new ObservableCollection<Employee>(_repository.SelectEmployed());
+            else Employees = new ObservableCollection<Employee>(_repository.SelectUnempolyed());
         }
 
         private void FireEmpolyee(object obj)
@@ -89,7 +123,7 @@ namespace HRProgramWPF.ViewModels
 
         private void AddEmpolyee(object obj)
         {
-            var addEmpWindow = new AddEditEmpolyee(obj as Employees);
+            var addEmpWindow = new AddEditEmpolyee(obj as Employee);
             addEmpWindow.ShowDialog();
         }
 

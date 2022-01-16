@@ -32,5 +32,6 @@ namespace HRProgramWPF.Views
             //    var employees = context.Employees.ToList();
             //}
         }
+
     }
 }

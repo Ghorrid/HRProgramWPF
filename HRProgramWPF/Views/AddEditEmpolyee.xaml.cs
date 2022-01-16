@@ -22,7 +22,7 @@ namespace HRProgramWPF.Views
     /// </summary>
     public partial class AddEditEmpolyee : MetroWindow
     {
-        public AddEditEmpolyee( Employees employees = null)
+        public AddEditEmpolyee( Employee employees = null)
         {
             InitializeComponent();
             DataContext = new AddEditEmpolyeeViewModel(employees);

@@ -18,14 +18,14 @@ namespace HRProgramWPF.ViewModels
 
         public bool IsUpdate = false;
 
-        public AddEditEmpolyeeViewModel( Employees employee = null)
+        public AddEditEmpolyeeViewModel( Employee employee = null)
         {
              CancelCommand = new RelayCommand(Cancel);
              ConfirmCommand = new RelayCommand(Confirm);
 
             if (employee == null)
             {
-                Employees = new Employees();
+                Employees = new Employee();
             }
             else
             {
@@ -38,9 +38,9 @@ namespace HRProgramWPF.ViewModels
         public ICommand CancelCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
 
-        private Employees _employees;
+        private Employee _employees;
 
-        public Employees Employees
+        public Employee Employees
         {
             get { return _employees; }
             set
@@ -50,8 +50,8 @@ namespace HRProgramWPF.ViewModels
             }
         }
 
-        private Employees _selectedEmpolyee;
-        public Employees SelectedEmpoloyee
+        private Employee _selectedEmpolyee;
+        public Employee SelectedEmpoloyee
         {
             get { return _selectedEmpolyee; }
             set

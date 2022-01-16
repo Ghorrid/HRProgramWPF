@@ -109,7 +109,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\EmployeesConfiguration.cs" />
     <Compile Include="Models\DbConnectionSettings.cs" />
-    <Compile Include="Models\Domains\Employees.cs" />
+    <Compile Include="Models\Domains\Employee.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditEmpolyeeViewModel.cs" />
     <Compile Include="ViewModels\DbSettingsViewModel.cs" />

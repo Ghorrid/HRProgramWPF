@@ -29,15 +29,15 @@
         <Label Content="Nazwa bazy danych:" Grid.Row="2" Grid.Column ="0" Margin="5"/>
         <Label Content="Login:" Grid.Row="3" Grid.Column ="0" Margin="5"/>
         <Label Content="Hasło:" Grid.Row="4" Grid.Column ="0" Margin="5"/>
-        <TextBox Text="{Binding DbConnectionSettings.ServerAddres}" 
+        <TextBox Text="{Binding ConnSettings.ServerAddres}" 
                  Width="200" Height="25" Grid.Row="0" Grid.Column ="1" Margin="5"/>
-        <TextBox Text="{Binding DbConnectionSettings.ServerName}"
+        <TextBox Text="{Binding ConnSettings.ServerName}"
                  Width="200" Height="25" Grid.Row="1" Grid.Column ="1" Margin="5"/>
-        <TextBox Text="{Binding DbConnectionSettings.DbName}"
+        <TextBox Text="{Binding ConnSettings.DbName}"
                  Width="200" Height="25" Grid.Row="2" Grid.Column ="1" Margin="5"/>
-        <TextBox Text="{Binding DbConnectionSettings.User}"
+        <TextBox Text="{Binding ConnSettings.User}"
                  Width="200" Height="25" Grid.Row="3" Grid.Column ="1" Margin="5"/>
-        <TextBox Text="{Binding DbConnectionSettings.Password}"
+        <TextBox Text="{Binding ConnSettings.Password}"
                   Width="200" Height="25" Grid.Row="4" Grid.Column ="1" Margin="5"/>
         <StackPanel Grid.Row="6" Orientation="Horizontal" Grid.Column="1" Margin="5,10,5,20">
             <Button 

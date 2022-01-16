@@ -24,12 +24,14 @@
             Content="Edytuj pracownika" Margin="5" Height="45" Width="130"  />
             <Button Content="Zwolnij pracownika" Margin="5" Height="45" Width="130"                     
              Command="{Binding FireEmpolyeeCommand}"/>
-            <ComboBox 
+            <ComboBox  x:Name="DataFiltr"
                 Margin="5" Height="25" Width="150" 
                 ItemsSource="{Binding DataFiltr}"
+                SelectedIndex="{Binding SelectedFiltrId}"                
                 />
-           <Button Content="Odśwież dane" Margin="5" Height="45" Width="100" 
-             Command="{Binding RefreshDataCommand}"      />
+           <Button Content="Filtruj" Margin="5" Height="45" Width="100" 
+             Command="{Binding FiltrDataCommand}"
+             CommandParameter="{Binding ElementName=DataFiltr, Path=SelectedIndex}"/>
            <Button Content="Ustawienia" Margin="5" Height="45" Width="110" 
              Command="{Binding ShowSettingsCommand}"/>
         </StackPanel>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRProgramWPF.Models.Configurations
 {
-    public class EmployeesConfiguration : EntityTypeConfiguration <Employees>
+    public class EmployeesConfiguration : EntityTypeConfiguration <Employee>
     {
         public EmployeesConfiguration()
         {

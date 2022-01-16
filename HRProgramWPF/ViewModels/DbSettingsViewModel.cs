@@ -3,6 +3,7 @@ using HRProgramWPF.Models;
 using HRProgramWPF.Properties;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,21 @@ namespace HRProgramWPF.ViewModels
 
             AcceptSettingsCommand = new RelayCommand(Accept);
             CloseSettingsCommand = new RelayCommand(Close);
+            _connSettings = new DbConnectionSettings();
         }
 
+        private DbConnectionSettings _connSettings;
+        public DbConnectionSettings ConnSettings { 
+            get
+            {
+                return _connSettings;
+            }
+            set
+            {
+                _connSettings = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand CloseSettingsCommand { get; set; }  
         public ICommand AcceptSettingsCommand { get; set; }
 
@@ -33,7 +47,16 @@ namespace HRProgramWPF.ViewModels
 
         private void Accept(object obj)
         {
-            throw new NotImplementedException();
+            Properties.Settings settings = Properties.Settings.Default;
+            settings.ServerName = _connSettings.ServerName;
+            settings.DbName = _connSettings.DbName;
+            settings.Password = _connSettings.Password;
+            settings.User = _connSettings.User;
+            settings.ServerAddres = _connSettings.ServerAddres;
+            settings.Save();
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+            
         }
 
     }

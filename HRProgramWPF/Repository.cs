@@ -9,17 +9,17 @@ namespace HRProgramWPF
 {
     public class Repository
     {
-       public List<Employees> GetEmployees()
+       public List<Employee> GetEmployees()
         {
             using (var context = new ApplicationDbContext())
             {
-                var employees = new List<Employees>();
+                var employees = new List<Employee>();
                 employees = context.Employees.ToList();
                 return employees;
             }
         }
 
-        public void FireEmpolyee(Employees SelectedEmployee)
+        public void FireEmpolyee(Employee SelectedEmployee)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -33,7 +33,7 @@ namespace HRProgramWPF
 
         }
 
-        public void AddNewEmployee (Employees employee)
+        public void AddNewEmployee (Employee employee)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -44,7 +44,7 @@ namespace HRProgramWPF
             }
         }
 
-        public void EdidEmployee (Employees employee)
+        public void EdidEmployee (Employee employee)
         {
             using(var context = new ApplicationDbContext())
             {
@@ -60,5 +60,23 @@ namespace HRProgramWPF
             }
         }
 
+        public List<Employee> SelectEmployed()
+        {
+           using (var context =new ApplicationDbContext())
+            {
+             var employed = context.Employees.Where(x=> x.DateOfDismissal == null).ToList();
+                return employed;
+            }
+           
+        }
+
+        public List<Employee>  SelectUnempolyed()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var unemployed = context.Employees.Where(x => x.DateOfDismissal != null).ToList();
+                return unemployed;
+            }
+        }
     }
 }
