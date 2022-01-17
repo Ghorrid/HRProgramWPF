@@ -1,0 +1,34 @@
+﻿<Window x:Class="HRProgramWPF.Views.LogInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HRProgramWPF.Views"  
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Name="UserLogInWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="Okno logowania użytkownika" Height="200" Width="400">
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Nazwa użytkownika:" />
+        <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Hasło użytkownika:" />
+        <Button Content="Zaloguj" Grid.Column="1" Grid.Row="2" 
+          Width="100" Height="50" Margin="5" 
+           Command="{Binding LogInCommand}"
+           CommandParameter="{Binding ElementName=txtPassword}"     />
+        <TextBox Text="{Binding User.UserName}" Grid.Row="0" Grid.Column="1"/>
+        <PasswordBox Name="txtPassword" Grid.Row="1" Grid.Column="1"/>
+    </Grid>
+</Window>
+
+    

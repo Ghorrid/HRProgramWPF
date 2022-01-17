@@ -12,7 +12,7 @@ namespace HRProgramWPF.Models.Domains
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmpolyeeNumber { get; set; }
-        public DateTime DateOfEmpolyement { get; set; }
+        public DateTime? DateOfEmpolyement { get; set; }
         public DateTime? DateOfDismissal { get; set; }
         public string Comments { get; set; }
         public decimal Wages { get; set; }

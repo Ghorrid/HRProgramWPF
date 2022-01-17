@@ -87,6 +87,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LogInWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,13 +110,19 @@
     <Compile Include="Migrations\202201131654277_SetFirstLastNameMaxLengthInEmployeesTable.designer.cs">
       <DependentUpon>202201131654277_SetFirstLastNameMaxLengthInEmployeesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201171552431_DateOfEmpolyementNullable.cs" />
+    <Compile Include="Migrations\202201171552431_DateOfEmpolyementNullable.designer.cs">
+      <DependentUpon>202201171552431_DateOfEmpolyementNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Configurations\EmployeesConfiguration.cs" />
     <Compile Include="Models\DbConnectionSettings.cs" />
     <Compile Include="Models\Domains\Employee.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditEmpolyeeViewModel.cs" />
     <Compile Include="ViewModels\DbSettingsViewModel.cs" />
+    <Compile Include="ViewModels\LogInViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddEditEmpolyee.xaml.cs">
@@ -120,6 +130,9 @@
     </Compile>
     <Compile Include="Views\DbSettings.xaml.cs">
       <DependentUpon>DbSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogInWindow.xaml.cs">
+      <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -145,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201131654277_SetFirstLastNameMaxLengthInEmployeesTable.resx">
       <DependentUpon>202201131654277_SetFirstLastNameMaxLengthInEmployeesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201171552431_DateOfEmpolyementNullable.resx">
+      <DependentUpon>202201171552431_DateOfEmpolyementNullable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

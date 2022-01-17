@@ -21,10 +21,10 @@ namespace HRProgramWPF.Views
     /// </summary>
     public partial class DbSettings : MetroWindow
     {
-        public DbSettings()
+        public DbSettings(bool canCloseWindow)
         {
             InitializeComponent();
-            DataContext = new DbSettingsViewModel();
+            DataContext = new DbSettingsViewModel(canCloseWindow);
         }
     }
 }

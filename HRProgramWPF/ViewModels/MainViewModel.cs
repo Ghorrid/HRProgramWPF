@@ -1,12 +1,16 @@
 ﻿using DiaryWPF.Commands;
 using HRProgramWPF.Models.Domains;
 using HRProgramWPF.Views;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -22,18 +26,22 @@ namespace HRProgramWPF.ViewModels
             FireEmpolyeeCommand = new RelayCommand(FireEmpolyee);
             FiltrDataCommand = new RelayCommand(FiltrData);
             ShowSettingsCommand = new RelayCommand(ShowSettings);
+
             GetAllEmpolyes();
             SetFiltr();
+
         }
+        
 
         public ICommand AddEmpolyeeCommand { get; set; }
         public ICommand EditEmpolyeeCommand { get; set; }
         public ICommand FireEmpolyeeCommand { get; set; }
         public ICommand FiltrDataCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
+        public ICommand LoadedWindowCommand { get; set; }
 
-      
-        
+
+
         private Employee _selectedEmployee;
 
         public Employee SelectedEmployee
@@ -98,7 +106,7 @@ namespace HRProgramWPF.ViewModels
 
         private void ShowSettings(object obj)
         {
-            var dbWindow = new DbSettings();
+            var dbWindow = new DbSettings(true);
             dbWindow.ShowDialog();
         }
 
@@ -127,8 +135,7 @@ namespace HRProgramWPF.ViewModels
             var addEmpWindow = new AddEditEmpolyee(obj as Employee);
             addEmpWindow.ShowDialog();
             GetAllEmpolyes();
-        }
-
+        } 
 
     }
 }

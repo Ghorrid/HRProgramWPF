@@ -13,7 +13,7 @@ namespace HRProgramWPF
 
 
 
-        private  static  string _connectionString = $@"Server = ({Settings.Default.ServerAddres})\{Settings.Default.ServerName};
+        public  static  string _connectionString = $@"Server = ({Settings.Default.ServerAddres})\{Settings.Default.ServerName};
             Database = {Settings.Default.DbName}; User Id={Settings.Default.User};Password={Settings.Default.Password};";
 
         public ApplicationDbContext()

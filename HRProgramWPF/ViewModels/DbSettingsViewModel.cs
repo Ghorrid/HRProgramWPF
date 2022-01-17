@@ -15,10 +15,10 @@ namespace HRProgramWPF.ViewModels
     public class DbSettingsViewModel : ViewModelBase
     {
 
-
-        public DbSettingsViewModel()
+        private bool _canClose;
+        public DbSettingsViewModel(bool canCloseWindow)
         {
-
+            _canClose = canCloseWindow;
             AcceptSettingsCommand = new RelayCommand(Accept);
             CloseSettingsCommand = new RelayCommand(Close);
             _connSettings = new DbConnectionSettings();
@@ -41,12 +41,20 @@ namespace HRProgramWPF.ViewModels
 
         private void Close(object obj)
         {
-            var window = (obj as Window);
-            window.Close();
+            if (!_canClose) Application.Current.Shutdown();
+            else
+            {
+                var window = (obj as Window);
+                window.Close();
+            }
+
         }
 
         private void Accept(object obj)
         {
+            if (!_connSettings.isValid)
+                return;
+
             Properties.Settings settings = Properties.Settings.Default;
             settings.ServerName = _connSettings.ServerName;
             settings.DbName = _connSettings.DbName;
