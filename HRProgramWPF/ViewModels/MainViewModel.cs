@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace HRProgramWPF.ViewModels
@@ -125,6 +126,7 @@ namespace HRProgramWPF.ViewModels
         {
             var addEmpWindow = new AddEditEmpolyee(obj as Employee);
             addEmpWindow.ShowDialog();
+            GetAllEmpolyes();
         }
 
 
