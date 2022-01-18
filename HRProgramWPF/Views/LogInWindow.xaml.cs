@@ -19,7 +19,7 @@ namespace HRProgramWPF.Views
     /// <summary>
     /// Interaction logic for LogInWindow.xaml
     /// </summary>
-    public partial class LogInWindow 
+    public partial class LogInWindow : MetroWindow
     {
         public LogInWindow()
         {
