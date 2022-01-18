@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Nazwa użytkownika:" />
         <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Hasło użytkownika:" />
-        <Button Content="Zaloguj" Grid.Column="1" Grid.Row="2" 
+        <Button HorizontalAlignment="Stretch" Content="Zaloguj" Grid.Column="1" Grid.Row="2" 
           Width="100" Height="50" Margin="5" 
            Command="{Binding LogInCommand}"
            CommandParameter="{Binding ElementName=txtPassword}"     />

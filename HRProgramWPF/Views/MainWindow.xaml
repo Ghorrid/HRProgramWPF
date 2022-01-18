@@ -12,8 +12,8 @@
         MinWidth="810"
         Title="Kadry i płace" Height="450" Width="810">
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding ClosingWindowCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -35,7 +35,7 @@
                 ItemsSource="{Binding DataFiltr}"
                 SelectedIndex="{Binding SelectedFiltrId}"                
                 />
-           <Button Content="Filtruj" Margin="5" Height="45" Width="100" 
+           <Button Content="Odśwież" Margin="5" Height="45" Width="100" 
              Command="{Binding FiltrDataCommand}"
              CommandParameter="{Binding ElementName=DataFiltr, Path=SelectedIndex}"/>
            <Button Content="Ustawienia" Margin="5" Height="45" Width="110" 

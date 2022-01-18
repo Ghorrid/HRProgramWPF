@@ -26,19 +26,21 @@ namespace HRProgramWPF.ViewModels
             FireEmpolyeeCommand = new RelayCommand(FireEmpolyee);
             FiltrDataCommand = new RelayCommand(FiltrData);
             ShowSettingsCommand = new RelayCommand(ShowSettings);
-            LoadedWindowCommand = new RelayCommand(LoadedWindow);
-            
-            LoadedWindow(null);
-        }
+//            LoadedWindowCommand = new RelayCommand(LoadedWindow);
+            ClosingWindowCommand = new RelayCommand(ClosingWindow);
 
-      
+            GetAllEmpolyes();
+            SetFiltr();
+        }
 
         public ICommand AddEmpolyeeCommand { get; set; }
         public ICommand EditEmpolyeeCommand { get; set; }
         public ICommand FireEmpolyeeCommand { get; set; }
         public ICommand FiltrDataCommand { get; set; }
         public ICommand ShowSettingsCommand { get; set; }
-        public ICommand LoadedWindowCommand { get; set; }
+//        public ICommand LoadedWindowCommand { get; set; }
+        public ICommand ClosingWindowCommand { get; set; }
+        
 
 
 
@@ -137,47 +139,53 @@ namespace HRProgramWPF.ViewModels
             GetAllEmpolyes();
         }
 
-        private async void LoadedWindow(object obj)
+        private void ClosingWindow(object obj)
         {
-            if (!IsConnectionStringValid())
-            {
-                var metroWindow = Application.Current.MainWindow as MetroWindow;
-
-                var dialog = await metroWindow.ShowMessageAsync("Błąd połaczenia do bazy danych", "Czy chcesz poprawić ustawienia do bazy danych?", MessageDialogStyle.AffirmativeAndNegative);
-
-                if (dialog == MessageDialogResult.Negative)
-                {
-                    Application.Current.Shutdown();
-                }
-                else
-                {
-                    var settingsWindow = new DbSettings(false);
-                    settingsWindow.ShowDialog();
-                }
-            }
-            else
-            {
-                GetAllEmpolyes();
-                SetFiltr();
-            }
+            Application.Current.Shutdown();
         }
 
-        private bool IsConnectionStringValid()
-        {
-            try
-            {
-                using (var context = new ApplicationDbContext())
-                {
-                    context.Database.Connection.Open();
-                    context.Database.Connection.Close();
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+
+        //private async void LoadedWindow(object obj)
+        //{
+        //    if (!IsConnectionStringValid())
+        //    {
+        //        var metroWindow = Application.Current.MainWindow as MetroWindow;
+
+        //        var dialog = await metroWindow.ShowMessageAsync("Błąd połaczenia do bazy danych", "Czy chcesz poprawić ustawienia do bazy danych?", MessageDialogStyle.AffirmativeAndNegative);
+
+        //        if (dialog == MessageDialogResult.Negative)
+        //        {
+        //            Application.Current.Shutdown();
+        //        }
+        //        else
+        //        {
+        //            var settingsWindow = new DbSettings(false);
+        //            settingsWindow.ShowDialog();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        GetAllEmpolyes();
+        //        SetFiltr();
+        //    }
+        //}
+
+        //private bool IsConnectionStringValid()
+        //{
+        //    try
+        //    {
+        //        using (var context = new ApplicationDbContext())
+        //        {
+        //            context.Database.Connection.Open();
+        //            context.Database.Connection.Close();
+        //            return true;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return false;
+        //    }
+        //}
 
     }
 }

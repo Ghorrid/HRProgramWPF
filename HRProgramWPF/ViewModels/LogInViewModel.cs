@@ -12,9 +12,9 @@ using System.Windows.Input;
 
 namespace HRProgramWPF.ViewModels
 {
-    public class LogInViewModel :ViewModelBase
+    public class LogInViewModel : ViewModelBase
     {
-        private static readonly string _userLog ="admin";
+        private static readonly string _userLog = "admin";
         private static readonly string _passLog = "a";
 
 
@@ -23,7 +23,7 @@ namespace HRProgramWPF.ViewModels
             LogInCommand = new RelayCommand(LogIn);
             User = new User();
         }
-        
+
         public ICommand LogInCommand { get; set; }
 
         private User _user;
@@ -31,7 +31,9 @@ namespace HRProgramWPF.ViewModels
         public User User
         {
             get { return _user; }
-            set { _user = value;
+            set
+            {
+                _user = value;
                 OnPropertyChanged();
             }
         }
@@ -44,11 +46,29 @@ namespace HRProgramWPF.ViewModels
             var userName = User.UserName;
             if (userName == _userLog && password == _passLog)
             {
-                var mainWindow = new MainWindow();
-                mainWindow.ShowDialog();
+                if (CheckConnection())
+                {
+                    var mainWindow = new MainWindow();
+                    mainWindow.ShowDialog();
+                }
+                else
+                {
+                    var messageWindow = new MessageWindow();
+                    messageWindow.ShowDialog();
+                }
+
             }
             else return;
         }
-
+        public static bool CheckConnection()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                if (context.Database.Exists())
+                    return true;
+                else return false;
+            }
+        }
     }
 }
+
