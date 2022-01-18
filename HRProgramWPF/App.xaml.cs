@@ -20,7 +20,7 @@ namespace HRProgramWPF
         public App()
         {
             var logInWindow = new LogInWindow();
-            logInWindow.ShowDialog();
+            logInWindow.Show();
 
             // MainWindow mainWindow = new MainWindow();
             // mainWindow.Show();

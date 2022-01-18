@@ -62,9 +62,15 @@ namespace HRProgramWPF.ViewModels
             settings.User = _connSettings.User;
             settings.ServerAddres = _connSettings.ServerAddres;
             settings.Save();
+            //Process.Start(Application.ResourceAssembly.Location);
+            //Application.Current.Shutdown();
+
+            var window = (obj as Window);
+            window.Close();
+
             Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
-            
+
         }
 
     }
