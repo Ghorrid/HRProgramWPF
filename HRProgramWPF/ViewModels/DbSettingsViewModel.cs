@@ -67,9 +67,9 @@ namespace HRProgramWPF.ViewModels
 
             var window = (obj as Window);
             window.Close();
-
-            Process.Start(Application.ResourceAssembly.Location);
+          
             Application.Current.Shutdown();
+            Process.Start(Application.ResourceAssembly.Location);
 
         }
 

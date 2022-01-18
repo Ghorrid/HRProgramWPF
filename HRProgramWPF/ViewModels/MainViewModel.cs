@@ -26,12 +26,12 @@ namespace HRProgramWPF.ViewModels
             FireEmpolyeeCommand = new RelayCommand(FireEmpolyee);
             FiltrDataCommand = new RelayCommand(FiltrData);
             ShowSettingsCommand = new RelayCommand(ShowSettings);
-
-            GetAllEmpolyes();
-            SetFiltr();
-
+            LoadedWindowCommand = new RelayCommand(LoadedWindow);
+            
+            LoadedWindow(null);
         }
-        
+
+      
 
         public ICommand AddEmpolyeeCommand { get; set; }
         public ICommand EditEmpolyeeCommand { get; set; }
@@ -135,7 +135,49 @@ namespace HRProgramWPF.ViewModels
             var addEmpWindow = new AddEditEmpolyee(obj as Employee);
             addEmpWindow.ShowDialog();
             GetAllEmpolyes();
-        } 
+        }
+
+        private async void LoadedWindow(object obj)
+        {
+            if (!IsConnectionStringValid())
+            {
+                var metroWindow = Application.Current.MainWindow as MetroWindow;
+
+                var dialog = await metroWindow.ShowMessageAsync("Błąd połaczenia do bazy danych", "Czy chcesz poprawić ustawienia do bazy danych?", MessageDialogStyle.AffirmativeAndNegative);
+
+                if (dialog == MessageDialogResult.Negative)
+                {
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    var settingsWindow = new DbSettings(false);
+                    settingsWindow.ShowDialog();
+                }
+            }
+            else
+            {
+                GetAllEmpolyes();
+                SetFiltr();
+            }
+        }
+
+        private bool IsConnectionStringValid()
+        {
+            try
+            {
+                using (var context = new ApplicationDbContext())
+                {
+                    context.Database.Connection.Open();
+                    context.Database.Connection.Close();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
     }
 }
